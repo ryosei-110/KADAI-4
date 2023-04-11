@@ -1,4 +1,4 @@
-<%= render 'un', book: @book, abc: @user %>
+<%= render 'un', book: @book, abc: @current_user %>
 
 <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
@@ -13,9 +13,9 @@
         <tbody>
         <% @users.each do |user| %>
           <tr>
-            <td><%= image_tag book.user.get_profile_image(100,100) %></td>
+            <td><%= image_tag user.get_profile_image(100,100) %></td>
             <td><%= user.name %></td>
-            <td><%= link_to "Show", edit_user_url_path %></td>
+            <td><%= link_to "Show", books_path %></td>
           </tr>
         <% end %>
         </tbody>
