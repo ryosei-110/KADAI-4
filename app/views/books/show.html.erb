@@ -3,26 +3,26 @@
     <div class="col-md-8 offset-md-1">
       <h2>Book detail</h2>
       <table class="table table-hover table-inverse">
-       <thead>
-         <tr>
-           <th>Title</th>
-           <th>title</th>
-           <th colspan="3"></th>
-          </tr>
-        </thead>
         <tbody>
-        
           <tr>
+            <td>
+              <%= image_tag @user.get_profile_image(100,100) %><br>
+              <%= link_to @book.user.name, user_path(@book.user.id) %>
+            </td>
             <td><%= @book.title %></td>
             <td><%= @book.body %></td>
             <td>
-              <%= link_to "Edit", edit_book_path(@book.id) %>
+              <% if @book.user == current_user %>
+    　　　　　　　　　<%= link_to "Edit", edit_book_path(@book.id) %>
+              <% end %>
             </td>
             <td>
+              <% if @book.user == current_user %>
               <%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+              <% end %>
             </td>
           </tr>
-        
+
         </tbody>
       </table>
     </div>

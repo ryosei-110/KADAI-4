@@ -1,3 +1,12 @@
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= render 'un', book: @book, abc: @user %>
 
     <div class="col-md-8 offset-md-1">
@@ -15,7 +24,7 @@
         <% @books.each do |book| %>
           <tr>
             <td><%= image_tag book.user.get_profile_image(100,100) %></td>
-            <td><%= book.title %></td>
+            <td><%= link_to book.title, book_path(book) %></td>
             <td><%= book.body %></td>
           </tr>
         <% end %>
