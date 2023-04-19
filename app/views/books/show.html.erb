@@ -19,8 +19,6 @@
             </tr>
           </tbody>
         </table>
-
-
       <div class="row">
         <%= link_to edit_user_path(@user.id), class: "btn btn-outline-secondary btn-block" do %>
         <i class="fas fa-user-cog"></i>
@@ -74,11 +72,26 @@
               <% end %>
             </td>
             <td>
-
+              <p>コメント件数：<%= @book.book_comments.count %></p>
             </td>
           </tr>
         </tbody>
       </table>
+      <div>
+        <% @book.book_comments.each do |book_comment| %>
+        <div>
+          <%= image_tag book_comment.user.get_profile_image(100,100) %>
+          <%= book_comment.comment %><br>
+          <%= link_to book_comment.user.name, user_path(book_comment.user.id) %>
+          <% end %>
+        </div>
+        <div>
+        <%= form_with model: [@book, @book_comment] do |f| %>
+        <%= f.text_area :comment, rows: '4', cols: '85'  %><br>
+        <%= f.submit "送信" %>
+        <% end %>
+      </div>
+      </div>
     </div>
   </div>
 </div>
